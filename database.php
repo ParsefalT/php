@@ -2,6 +2,7 @@
 // connect to db, and execute a query;
 class DataBase {
     public $connection;
+    public $statement;
 
     public function __construct($config, $username = "pars", $password = "12345") {
 
@@ -12,10 +13,25 @@ class DataBase {
         ]);
     }
 
-    public function query ($query, $params) {
-        $statement = $this->connection->prepare($query);
-        $statement->execute(params: $params);
+    public function query($query, $params = []) {
+        $this->statement = $this->connection->prepare($query);
+        $this->statement->execute(params: $params);
 
-        return $statement;
+        return $this;
+    }
+
+    public function getAll() {
+        return $this->statement->fetchAll();
+    }
+
+    public function find() {
+        return $this->statement->fetch();
+    }
+    public function findOrFail() {
+        $result = $this->find();
+        if(!$result) {
+            abort();
+        }
+        return $result;
     }
 }
