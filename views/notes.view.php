@@ -10,6 +10,10 @@
             </li>
         <?php endforeach; ?>    
       </ul>
+      
+      <p class="mt-6">
+        <a href="/notes/create" class="text-red-600 hover:underline">create new note</a>
+      </p>
     </div>
   </main>
 <?php require("partials/footer.php") ?>

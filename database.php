@@ -20,8 +20,8 @@ class DataBase {
         return $this;
     }
 
-    public function getAll() {
-        return $this->statement->fetchAll();
+    public function getAll($arg_pdo) {
+        return $this->statement->fetchAll($arg_pdo);
     }
 
     public function find() {
