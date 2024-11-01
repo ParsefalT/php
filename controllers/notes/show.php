@@ -1,10 +1,10 @@
 <?php
-$config = require("config.php");
+$config = require base_path("config.php");
 
 $db = new DataBase($config["database"]);
 
 
-$heading = "Note";
+// $heading = "Note";
 $currentUserId = 1;
 
 
@@ -19,5 +19,8 @@ $note = $db->query("select * from notes where id = :id",[
 authorized($note['user_id'] !== $currentUserId);
 
 
-
-require "views/notes/show.view.php";
+view("notes/show.view.php", [
+    'heading' => 'Note',
+    'note' => $note,
+    'currentUserId' => $currentUserId
+]);
