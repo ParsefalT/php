@@ -8,7 +8,7 @@
 
       <form action="" method="POST" class="mt-2">
         <input type="hidden" name="_method" id="" value="DELETE">
-        <input type="hidden" placeholder="type num witch delete line" name="deleteId" value="<?= $note["id"] ?>">
+        <input type="hidden" placeholder="type num witch delete line" name="id" value="<?= $note["id"] ?>">
         <button href="" class="text-red-600">Delete</button>
       </form>
     </div>
