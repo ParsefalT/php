@@ -1,12 +1,8 @@
 <?php
+use Core\App;
 use Core\DataBase;
 
-$config = require base_path("config.php");
-
-$db = new DataBase($config["database"]);
-
-
-// $heading = "Notes";
+$db = App::resolve(DataBase::class);
 
 $notes = $db->query("select * from notes where user_id = :id",[":id"=>1])->getAll(PDO::FETCH_ASSOC);
 
