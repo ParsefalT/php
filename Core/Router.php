@@ -1,8 +1,6 @@
 <?php 
 namespace Core;
 use Core\Middleware\Middleware;
-use Core\Middleware\Auth;
-use Core\Middleware\Guest;
 
 class Router {
     protected $routes = [];
