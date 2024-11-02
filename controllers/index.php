@@ -1,5 +1,5 @@
 <?php 
-// $heading = "Home";
+$_SESSION['name'] = "Pars";
 
 view("index.view.php", [
     'heading' => 'Home'
