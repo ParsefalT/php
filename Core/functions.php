@@ -1,5 +1,6 @@
 <?php 
 use Core\Response;
+use Core\Session;
 
 function urlIs($value) {
     return $_SERVER["REQUEST_URI"] == $value;
@@ -52,4 +53,8 @@ function logout() {
 function redirect($path) {
     header("location: {$path}");
     exit();
+}
+
+function old($key, $default = '') {
+    return Core\Session::get('old')[$key] ?? $default;
 }
