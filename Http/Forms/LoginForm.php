@@ -1,21 +1,34 @@
 <?php
 namespace Http\Forms;
+
+use Core\ValidationException;
 use Core\Validator;
 
 class LoginForm {
     protected $errors = [];
-    
-    public function validate($email, $password) {
 
-        if(!Validator::email($email)) {
+    public function __construct(public array $attr) {
+        if(!Validator::email($attr['email'])) {
             $this->errors['email'] = "Please provide a valid email";
         }
 
-        if(!Validator::string($password, 6, 22)) {
+        if(!Validator::string($attr['password'], 1)) {
             $this->errors['password'] = 'type correct your password(6 - 22)';
         }
+    }
+    
+    public static function validate($attr) {
+        $instance = new static($attr);
 
-        return empty($this->errors);
+        return $instance->field() ? $instance->throw() : $instance;
+    }
+
+    public function throw() {
+        ValidationException::throw($this->errors(), $this->attr);
+    }
+    
+    public function field() {        
+        return count($this->errors);
     }
 
     public function errors() {
@@ -24,5 +37,6 @@ class LoginForm {
 
     public function error($field, $msg) {
         $this->errors[$field] = $msg;
+        return $this;
     }
 }
