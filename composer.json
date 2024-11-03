@@ -1,0 +1,16 @@
+{
+    "name": "pars/php",
+    "description": "test",
+    "autoload": {
+        "psr-4": {
+            "Core\\": "Core/",
+            "Http\\": "Http/"
+        }
+    },
+    "authors": [
+        {
+            "name": "pars"
+        }
+    ],
+    "require": {}
+}
